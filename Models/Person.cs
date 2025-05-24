@@ -1,4 +1,4 @@
-namespace MicrudApi.Models
+namespace MiCrudApi.Models
 {
     public class Person
     {

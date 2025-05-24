@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MicrudApi.Models;
+using MiCrudApi.Models;
 
 namespace MiCrudApi.Data
 {
@@ -13,5 +13,6 @@ namespace MiCrudApi.Data
         // Example:
         // public DbSet<YourModel> YourModels { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Producto> Productos { get; set; }
     }
 }

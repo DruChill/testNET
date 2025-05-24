@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using MicrudApi.Models;
+using MiCrudApi.Models;
 using MiCrudApi.Data;
 using Microsoft.EntityFrameworkCore;
 
