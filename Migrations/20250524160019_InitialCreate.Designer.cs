@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MiCrudApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250524151826_AddClientesTable")]
-    partial class AddClientesTable
+    [Migration("20250524160019_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,17 +21,44 @@ namespace MiCrudApi.Migrations
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("MiCrudApi.Models.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categorias");
+                });
+
             modelBuilder.Entity("MiCrudApi.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Apellido")
+                    b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -44,6 +71,9 @@ namespace MiCrudApi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -59,7 +89,25 @@ namespace MiCrudApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoriaId");
+
                     b.ToTable("Productos");
+                });
+
+            modelBuilder.Entity("MiCrudApi.Models.Producto", b =>
+                {
+                    b.HasOne("MiCrudApi.Models.Categoria", "Categoria")
+                        .WithMany("Productos")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("MiCrudApi.Models.Categoria", b =>
+                {
+                    b.Navigation("Productos");
                 });
 #pragma warning restore 612, 618
         }
