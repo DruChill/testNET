@@ -7,5 +7,9 @@
         public string Description { get; set; }
         public decimal Price { get; set; }
 
+        // Llave foránea
+        public int CategoriaId { get; set; }
+        // Propiedad de navegación
+        public Categoria Categoria { get; set; }
     }
 }
