@@ -12,7 +12,7 @@ namespace MiCrudApi.Data
         // Add your DbSet properties here
         // Example:
         // public DbSet<YourModel> YourModels { get; set; }
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Producto> Productos { get; set; }
     }
 }
